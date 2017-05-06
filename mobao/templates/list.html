@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MoBao product list</title>
+</head>
+<body>
+<form action="/checkout" method="post">
+    {% if session.user is defined %}
+    <p> Welcome. {{ session.user.name }} !!</p>
+    <p><a href="/logout">Log Out</a> </p>
+    {% endif %}
+    <table>
+        {% for product in products %}
+        <tr>
+            <td>name: {{ product.name }}</td>
+            <td>price: {{ product.price }}</td>
+            <td><img src="static/{{product.image}}" /> </td>
+            <td>amount: <input type="text" placeholder="how many" name="amount" /></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="Check Out!"/>
+</form>
+</body>
+</html>
